@@ -26,7 +26,7 @@ class ExpenseAdapter(
 
         fun bind(expense: Expense) {
             ivIcon.setImageResource(expense.type.iconRes)
-            tvType.text = expense.type.label
+            tvType.text = itemView.context.getString(expense.type.labelRes)
             tvAmount.text = itemView.context.getString(R.string.expense_amount_format, expense.amount)
             tvDescription.text = expense.description.ifBlank { "-" }
             tvCreateAt.text = itemView.context.getString(
@@ -52,4 +52,3 @@ class ExpenseAdapter(
         override fun areContentsTheSame(oldItem: Expense, newItem: Expense) = oldItem == newItem
     }
 }
-

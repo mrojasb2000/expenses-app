@@ -2,6 +2,8 @@ package com.bramworks.tech.expenses
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -13,7 +15,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bramworks.tech.expenses.ui.ExpenseAdapter
+import com.bramworks.tech.expenses.ui.LanguageMenuHelper
 import com.bramworks.tech.expenses.ui.MainViewModel
+import com.google.android.material.appbar.MaterialToolbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,9 +28,12 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         val btnNewExpenses = findViewById<Button>(R.id.btnNewExpenses)
         val rvExpenses = findViewById<RecyclerView>(R.id.rvExpenses)
         val tvEmptyState = findViewById<TextView>(R.id.tvEmptyState)
+
+        LanguageMenuHelper.setupToolbar(this, toolbar, R.string.app_name)
 
         // Configurar RecyclerView
         val adapter = ExpenseAdapter { expense -> viewModel.delete(expense) }
@@ -48,5 +55,23 @@ class MainActivity : AppCompatActivity() {
             view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        LanguageMenuHelper.inflateMenu(menuInflater, menu)
+        return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        LanguageMenuHelper.syncSelectedLanguage(menu)
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (LanguageMenuHelper.handleLanguageSelection(item.itemId)) {
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

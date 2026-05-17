@@ -1,6 +1,8 @@
 package com.bramworks.tech.expenses
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -12,13 +14,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bramworks.tech.expenses.models.Expense
-import com.bramworks.tech.expenses.ui.MainViewModel
 import com.bramworks.tech.expenses.models.ExpenseTypeEnum
+import com.bramworks.tech.expenses.ui.LanguageMenuHelper
+import com.bramworks.tech.expenses.ui.MainViewModel
+import com.google.android.material.appbar.MaterialToolbar
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-
-
 
 class FormActivity : AppCompatActivity() {
 
@@ -33,6 +35,7 @@ class FormActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_form)
 
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         val spinnerType = findViewById<AutoCompleteTextView>(R.id.spinnerType)
         val etAmount = findViewById<EditText>(R.id.etAmount)
         val etDescription = findViewById<EditText>(R.id.etDescription)
@@ -40,13 +43,15 @@ class FormActivity : AppCompatActivity() {
         val btnSave = findViewById<Button>(R.id.btnSaveExpenses)
         val btnCancel = findViewById<Button>(R.id.btnCancel)
 
+        LanguageMenuHelper.setupToolbar(this, toolbar, R.string.new_expense_title, showBackButton = true)
+
         if (etCreateAt.text.isNullOrBlank()) {
             etCreateAt.setText(currentDateString())
         }
 
-        // Mapper label → enum
-        val labelToEnum = ExpenseTypeEnum.entries.associateBy { it.label }
-        val labels = ExpenseTypeEnum.entries.map { it.label }
+        // Mapper label → enum usando textos localizados
+        val labelToEnum = ExpenseTypeEnum.entries.associateBy { getString(it.labelRes) }
+        val labels = ExpenseTypeEnum.entries.map { getString(it.labelRes) }
 
         spinnerType.setAdapter(
             ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, labels)
@@ -87,6 +92,27 @@ class FormActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        LanguageMenuHelper.inflateMenu(menuInflater, menu)
+        return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        LanguageMenuHelper.syncSelectedLanguage(menu)
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when {
+            item.itemId == android.R.id.home -> {
+                finish()
+                true
+            }
+            LanguageMenuHelper.handleLanguageSelection(item.itemId) -> true
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

@@ -11,7 +11,7 @@ import com.bramworks.tech.expenses.models.Expense
 @Dao
 interface ExpenseDao {
 
-    @Query("SELECT * FROM expenses ORDER BY id DESC")
+    @Query("SELECT * FROM expenses ORDER BY createAt DESC")
     fun getAllExpenses(): LiveData<List<Expense>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

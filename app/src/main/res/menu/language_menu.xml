@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_change_language"
+        android:title="@string/menu_change_language"
+        app:showAsAction="never">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_language_english"
+                    android:checkable="true"
+                    android:title="@string/language_english" />
+                <item
+                    android:id="@+id/action_language_spanish"
+                    android:checkable="true"
+                    android:title="@string/language_spanish" />
+            </group>
+        </menu>
+    </item>
+
+</menu>
+
