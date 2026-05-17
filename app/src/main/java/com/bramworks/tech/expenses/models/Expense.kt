@@ -8,5 +8,6 @@ data class Expense(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val type: ExpenseTypeEnum,
     val amount: Double,
-    val description: String = ""
+    val description: String = "",
+    val createAt: String = ""
 )

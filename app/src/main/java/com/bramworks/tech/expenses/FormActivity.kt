@@ -14,12 +14,19 @@ import androidx.core.view.WindowInsetsCompat
 import com.bramworks.tech.expenses.models.Expense
 import com.bramworks.tech.expenses.ui.MainViewModel
 import com.bramworks.tech.expenses.models.ExpenseTypeEnum
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 
 class FormActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
+
+    private fun currentDateString(): String {
+        return SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +36,13 @@ class FormActivity : AppCompatActivity() {
         val spinnerType = findViewById<AutoCompleteTextView>(R.id.spinnerType)
         val etAmount = findViewById<EditText>(R.id.etAmount)
         val etDescription = findViewById<EditText>(R.id.etDescription)
+        val etCreateAt = findViewById<EditText>(R.id.etCreateAt)
         val btnSave = findViewById<Button>(R.id.btnSaveExpenses)
         val btnCancel = findViewById<Button>(R.id.btnCancel)
+
+        if (etCreateAt.text.isNullOrBlank()) {
+            etCreateAt.setText(currentDateString())
+        }
 
         // Mapper label → enum
         val labelToEnum = ExpenseTypeEnum.entries.associateBy { it.label }
@@ -54,9 +66,15 @@ class FormActivity : AppCompatActivity() {
             val selectedType = labelToEnum[spinnerType.text.toString()]
                 ?: ExpenseTypeEnum.ELECTRICAL
             val description = etDescription.text.toString().trim()
+            val createAt = etCreateAt.text.toString().trim().ifBlank { currentDateString() }
 
             viewModel.insert(
-                Expense(type = selectedType, amount = amount, description = description)
+                Expense(
+                    type = selectedType,
+                    amount = amount,
+                    description = description,
+                    createAt = createAt
+                )
             )
             finish()
         }

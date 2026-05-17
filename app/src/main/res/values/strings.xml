@@ -9,9 +9,12 @@
     <string name="label_expense_type">Tipo de gasto</string>
     <string name="label_amount">Monto</string>
     <string name="hint_amount">0.00</string>
+    <string name="label_create_at">Fecha Lectura</string>
+    <string name="hint_create_at">DD-MM-YYYY</string>
     <string name="label_description">Descripción (opcional)</string>
     <string name="hint_description">Ej. Factura junio</string>
     <string name="delete_expense">Eliminar gasto</string>
     <string name="expense_amount_format">$%.2f</string>
+    <string name="expense_created_at_format">Lectura: %1$s</string>
     <string name="error_invalid_amount">Ingresa un monto válido</string>
 </resources>

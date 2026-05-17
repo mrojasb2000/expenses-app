@@ -19,12 +19,17 @@ class ExpenseAdapter(
         private val tvType: TextView = itemView.findViewById(R.id.tvExpenseType)
         private val tvAmount: TextView = itemView.findViewById(R.id.tvExpenseAmount)
         private val tvDescription: TextView = itemView.findViewById(R.id.tvExpenseDescription)
+        private val tvCreateAt: TextView = itemView.findViewById(R.id.tvExpenseCreateAt)
         private val btnDelete: ImageButton = itemView.findViewById(R.id.btnDeleteExpense)
 
         fun bind(expense: Expense) {
             tvType.text = expense.type.label
             tvAmount.text = itemView.context.getString(R.string.expense_amount_format, expense.amount)
             tvDescription.text = expense.description.ifBlank { "-" }
+            tvCreateAt.text = itemView.context.getString(
+                R.string.expense_created_at_format,
+                expense.createAt.ifBlank { "-" }
+            )
             btnDelete.setOnClickListener { onDeleteClick(expense) }
         }
     }
