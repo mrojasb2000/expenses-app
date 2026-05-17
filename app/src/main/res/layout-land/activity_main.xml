@@ -10,45 +10,48 @@
 
     <ImageView
         android:id="@+id/ivLogoImage"
-        android:layout_width="239dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="72dp"
+        android:layout_height="50dp"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/my_expenses_logo"
+        android:scaleType="fitCenter"
         android:src="@drawable/expense"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/app_name"
         android:textColor="@color/text_primary"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivLogoImage" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ivLogoImage"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnNewExpenses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:backgroundTint="@color/brand_primary"
         android:text="@string/new_expenses"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tvEmptyState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/no_expenses"
         android:textColor="@color/text_secondary"
         android:textSize="16sp"
@@ -61,7 +64,7 @@
         android:id="@+id/rvExpenses"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:fadeScrollbars="false"
         android:fastScrollEnabled="true"
@@ -76,3 +79,4 @@
         tools:listitem="@layout/item_expense" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
