@@ -1,13 +1,8 @@
-package com.bramworks.tech.restaurant
+package com.bramworks.tech.expenses
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.view.View
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat

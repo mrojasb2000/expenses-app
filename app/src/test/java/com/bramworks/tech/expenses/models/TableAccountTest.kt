@@ -1,4 +1,4 @@
-package com.bramworks.tech.restaurant.models
+package com.bramworks.tech.expenses.models
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

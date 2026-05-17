@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.bramworks.tech.restaurant"
+    namespace = "com.bramworks.tech.expenses"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1

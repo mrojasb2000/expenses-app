@@ -1,4 +1,4 @@
-package com.bramworks.tech.restaurant
+package com.bramworks.tech.expenses
 
 import org.junit.Test
 
