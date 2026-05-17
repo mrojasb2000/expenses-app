@@ -17,17 +17,28 @@
         android:minHeight="88dp"
         android:padding="14dp">
 
+        <ImageView
+            android:id="@+id/ivExpenseIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/expense_type_icon"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
         <TextView
             android:id="@+id/tvExpenseType"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="?attr/textAppearanceTitleSmall"
             android:textStyle="bold"
             android:textColor="@color/text_primary"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivExpenseIcon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvExpenseAmount" />
 
@@ -60,12 +71,13 @@
             android:id="@+id/tvExpenseDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="6dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="@color/text_secondary"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivExpenseIcon"
             app:layout_constraintTop_toBottomOf="@id/tvExpenseType"
             app:layout_constraintEnd_toStartOf="@+id/btnDeleteExpense" />
 
@@ -73,12 +85,13 @@
             android:id="@+id/tvExpenseCreateAt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textColor="@color/text_secondary"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivExpenseIcon"
             app:layout_constraintTop_toBottomOf="@id/tvExpenseDescription"
             app:layout_constraintEnd_toStartOf="@+id/btnDeleteExpense"
             app:layout_constraintBottom_toBottomOf="parent" />

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -16,6 +17,7 @@ class ExpenseAdapter(
 ) : ListAdapter<Expense, ExpenseAdapter.ExpenseViewHolder>(DiffCallback) {
 
     inner class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val ivIcon: ImageView = itemView.findViewById(R.id.ivExpenseIcon)
         private val tvType: TextView = itemView.findViewById(R.id.tvExpenseType)
         private val tvAmount: TextView = itemView.findViewById(R.id.tvExpenseAmount)
         private val tvDescription: TextView = itemView.findViewById(R.id.tvExpenseDescription)
@@ -23,6 +25,7 @@ class ExpenseAdapter(
         private val btnDelete: ImageButton = itemView.findViewById(R.id.btnDeleteExpense)
 
         fun bind(expense: Expense) {
+            ivIcon.setImageResource(expense.type.iconRes)
             tvType.text = expense.type.label
             tvAmount.text = itemView.context.getString(R.string.expense_amount_format, expense.amount)
             tvDescription.text = expense.description.ifBlank { "-" }
