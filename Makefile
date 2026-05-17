@@ -5,7 +5,7 @@ GRADLE ?= ./gradlew
 DEFAULT_GOAL := help
 
 help:
-	@echo "Makefile para el proyecto Android 'Restaurant'"
+	@echo "Makefile para el proyecto Android 'Expenses'"
 	@echo "Uso: make <target>"
 	@echo "Targets disponibles:"
 	@echo "  help           - Muestra esta ayuda"

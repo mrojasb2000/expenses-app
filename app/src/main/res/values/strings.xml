@@ -3,4 +3,15 @@
     <string name="my_expenses_logo">My Expenses Logo</string>
     <string name="new_expenses">Nuevo</string>
     <string name="save_expenses">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="no_expenses">No hay gastos registrados</string>
+    <string name="new_expense_title">Nuevo Gasto</string>
+    <string name="label_expense_type">Tipo de gasto</string>
+    <string name="label_amount">Monto</string>
+    <string name="hint_amount">0.00</string>
+    <string name="label_description">Descripción (opcional)</string>
+    <string name="hint_description">Ej. Factura junio</string>
+    <string name="delete_expense">Eliminar gasto</string>
+    <string name="expense_amount_format">$%.2f</string>
+    <string name="error_invalid_amount">Ingresa un monto válido</string>
 </resources>

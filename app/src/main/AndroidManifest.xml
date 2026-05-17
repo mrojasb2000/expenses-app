@@ -10,9 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Restaurant">
+        android:theme="@style/Theme.Expenses">
         <activity
-            android:name=".MainActivity"
+            android:name="com.bramworks.tech.expenses.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FormActivity"
+            android:name="com.bramworks.tech.expenses.FormActivity"
             android:exported="false" />
     </application>
 
