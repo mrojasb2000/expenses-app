@@ -12,12 +12,16 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bramworks.tech.expenses.ui.ExpenseAdapter
 import com.bramworks.tech.expenses.ui.LanguageMenuHelper
 import com.bramworks.tech.expenses.ui.MainViewModel
 import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,10 +44,14 @@ class MainActivity : AppCompatActivity() {
         rvExpenses.adapter = adapter
         rvExpenses.layoutManager = LinearLayoutManager(this)
 
-        // Observar LiveData desde Room
-        viewModel.allExpenses.observe(this) { expenses ->
-            adapter.submitList(expenses)
-            tvEmptyState.visibility = if (expenses.isEmpty()) View.VISIBLE else View.GONE
+        // Recolectar Flow desde Room respetando el ciclo de vida
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.allExpenses.collect { expenses ->
+                    adapter.submitList(expenses)
+                    tvEmptyState.visibility = if (expenses.isEmpty()) View.VISIBLE else View.GONE
+                }
+            }
         }
 
         btnNewExpenses.setOnClickListener {

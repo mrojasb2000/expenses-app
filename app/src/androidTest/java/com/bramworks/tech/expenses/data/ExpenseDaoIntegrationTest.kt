@@ -5,7 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.bramworks.tech.expenses.models.Expense
 import com.bramworks.tech.expenses.models.ExpenseTypeEnum
-import com.bramworks.tech.expenses.testing.getOrAwaitValue
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -56,7 +56,7 @@ class ExpenseDaoIntegrationTest {
             dao.insert(expenseB)
         }
 
-        val expenses = dao.getAllExpenses().getOrAwaitValue()
+        val expenses = runBlocking { dao.getAllExpenses().first() }
 
         assertEquals(2, expenses.size)
         assertEquals(ExpenseTypeEnum.NATURAL_GAS, expenses[0].type)
@@ -85,7 +85,7 @@ class ExpenseDaoIntegrationTest {
             dao.delete(nonPersisted)
         }
 
-        val expenses = dao.getAllExpenses().getOrAwaitValue()
+        val expenses = runBlocking { dao.getAllExpenses().first() }
 
         assertEquals(1, expenses.size)
         assertTrue(expenses.any { it.description == "Luz" })

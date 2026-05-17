@@ -73,6 +73,9 @@ class FormActivity : AppCompatActivity() {
             val description = etDescription.text.toString().trim()
             val createAt = etCreateAt.text.toString().trim().ifBlank { currentDateString() }
 
+            btnSave.isEnabled = false
+            btnCancel.isEnabled = false
+
             viewModel.insert(
                 Expense(
                     type = selectedType,
@@ -80,8 +83,9 @@ class FormActivity : AppCompatActivity() {
                     description = description,
                     createAt = createAt
                 )
-            )
-            finish()
+            ) {
+                finish()
+            }
         }
 
         btnCancel.setOnClickListener {
