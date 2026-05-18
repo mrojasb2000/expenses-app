@@ -1,0 +1,19 @@
+<ion-card>
+  @if (announcement.image) {
+    <img [src]="announcement.image" alt="Imagen del aviso" />
+  }
+  <ion-card-header>
+    <ion-card-subtitle color="primary">
+      {{ announcement.type | uppercase }} | {{ announcement.createdAt | formatDate }}
+    </ion-card-subtitle>
+    <ion-card-title>{{ announcement.title }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p>{{ announcement.content }}</p>
+    <div class="ion-text-end">
+      <ion-button color="danger" fill="clear" (click)="emitterDelete()">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>

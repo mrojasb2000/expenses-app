@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/announcements"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear Aviso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="announcementForm" (ngSubmit)="saveAnnouncement()">
+
+    <ion-item>
+      <ion-select formControlName="type" label="Tipo de Aviso" label-placement="stacked" placeholder="Seleccione una opción">
+        <ion-select-option value="mascota">Mascota Perdida/Encontrada</ion-select-option>
+        <ion-select-option value="documento">Hallazgo de Documentos</ion-select-option>
+        <ion-select-option value="seguridad">Situación Sospechosa</ion-select-option>
+        <ion-select-option value="otro">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+    @if (announcementForm.get('type')?.touched && announcementForm.get('type')?.invalid) {
+      <div class="error-container ion-padding-start">
+        <ion-text color="danger"><small>El tipo de aviso es obligatorio.</small></ion-text>
+      </div>
+    }
+
+    <ion-item>
+      <ion-input formControlName="title" type="text" label="Título" label-placement="stacked" placeholder="Ej: Perro extraviado en plaza"></ion-input>
+    </ion-item>
+    @if (announcementForm.get('title')?.touched && announcementForm.get('title')?.invalid) {
+      <div class="error-container ion-padding-start">
+        @if (announcementForm.get('title')?.errors?.['required']) {
+          <ion-text color="danger"><small>El título es requerido.</small></ion-text>
+        }
+        @if (announcementForm.get('title')?.errors?.['minlength']) {
+          <ion-text color="danger"><small>Debe tener al menos 5 caracteres.</small></ion-text>
+        }
+      </div>
+    }
+
+    <ion-item>
+      <ion-textarea formControlName="description" rows="4" label="Descripción detallada" label-placement="stacked" placeholder="Describa el acontecimiento..."></ion-textarea>
+    </ion-item>
+    @if (announcementForm.get('description')?.touched && announcementForm.get('description')?.invalid) {
+      <div class="error-container ion-padding-start">
+        @if (announcementForm.get('description')?.errors?.['required']) {
+          <ion-text color="danger"><small>La descripción es requerida.</small></ion-text>
+        }
+        @if (announcementForm.get('description')?.errors?.['minlength']) {
+          <ion-text color="danger"><small>Debe detallar un mínimo de 20 caracteres.</small></ion-text>
+        }
+      </div>
+    }
+
+    <div class="ion-text-center ion-margin-top">
+      <ion-button type="button" fill="outline" color="secondary" (click)="takePhoto()">
+        <ion-icon slot="start" name="camera-outline"></ion-icon>
+        Adjuntar Fotografía
+      </ion-button>
+      @if (image) {
+        <div class="ion-margin-top">
+          <img [src]="image" style="max-width: 200px; border-radius: 8px;" alt="Vista previa" />
+        </div>
+      }
+    </div>
+
+    <ion-button class="ion-margin-top" type="submit" expand="block" [disabled]="announcementForm.invalid">
+      Publicar Aviso
+    </ion-button>
+  </form>
+</ion-content>

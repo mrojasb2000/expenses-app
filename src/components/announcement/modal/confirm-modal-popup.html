@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Confirmar Eliminación</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding ion-text-center">
+  <p>¿Está seguro de que desea eliminar permanentemente esta publicación?</p>
+  <div class="ion-margin-top">
+    <ion-button color="medium" (click)="cancelar()">Cancelar</ion-button>
+    <ion-button color="danger" (click)="confirmar()">Eliminar</ion-button>
+  </div>
+</ion-content>

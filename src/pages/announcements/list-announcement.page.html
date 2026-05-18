@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Publicaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  @if (announcements.length === 0) {
+    <div class="ion-text-center ion-padding">
+      <p>No tienes publicaciones aún.</p>
+    </div>
+  }
+
+  @for (item of announcements; track item.id) {
+    <app-announcement-item
+      [announcement]="item"
+      (onDelete)="confirmDelete($event)">
+    </app-announcement-item>
+  }
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/crear-publicacion">
+      <span class="ion-hide-lg-down" style="color: white; font-weight: 700;">Crear</span>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
