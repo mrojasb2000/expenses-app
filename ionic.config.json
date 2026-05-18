@@ -1,0 +1,7 @@
+{
+  "name": "Whatshappen",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
