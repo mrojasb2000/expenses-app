@@ -18,6 +18,9 @@
     <string name="expense_amount_format">$%.2f</string>
     <string name="expense_created_at_format">Reading: %1$s</string>
     <string name="error_invalid_amount">Enter a valid amount</string>
+    <string name="menu_change_language">Language</string>
+    <string name="language_english">English</string>
+    <string name="language_spanish">Spanish</string>
     <string name="expense_type_electrical">Electrical</string>
     <string name="expense_type_natural_gas">Natural Gas</string>
     <string name="expense_type_water">Water</string>
