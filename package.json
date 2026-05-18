@@ -9,7 +9,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "postinstall": "node -e \"const fs=require('fs');const d=fs.existsSync('node_modules/.pnpm')&&fs.readdirSync('node_modules/.pnpm').find(x=>x.startsWith('sql.js@'));if(d){const s='node_modules/.pnpm/'+d+'/node_modules/sql.js/dist/sql-wasm.wasm';if(fs.existsSync(s))fs.copyFileSync(s,'src/assets/sql-wasm.wasm');}\""
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/platform-browser-dynamic": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@capacitor-community/sqlite": "^8.1.0",
     "@capacitor/app": "8.1.0",
     "@capacitor/camera": "^8.2.0",
     "@capacitor/core": "8.3.4",
@@ -31,9 +33,11 @@
     "@ionic/angular": "^8.0.0",
     "@ionic/pwa-elements": "^3.4.0",
     "ionicons": "^7.0.0",
+    "jeep-sqlite": "^2.8.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "zone.js": "~0.15.0",
+    "sql.js": "1.11.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^20.0.0",

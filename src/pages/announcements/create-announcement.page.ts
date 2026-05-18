@@ -46,6 +46,7 @@ export class CreateAnnouncementPage {
 
   async saveAnnouncement() {
     if (this.announcementForm.invalid) {
+      console.log('Form is invalid:', this.announcementForm.errors);
       this.announcementForm.markAllAsTouched();
       return;
     }

@@ -64,7 +64,7 @@
       }
     </div>
 
-    <ion-button class="ion-margin-top" type="submit" expand="block" [disabled]="announcementForm.invalid">
+    <ion-button class="ion-margin-top" type="button" expand="block" [disabled]="announcementForm.invalid" (click)="saveAnnouncement()">
       Publicar Aviso
     </ion-button>
   </form>
