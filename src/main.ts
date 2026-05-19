@@ -19,14 +19,11 @@ async function main(): Promise<void> {
     const jeepEl = document.createElement('jeep-sqlite') as any;
     document.body.appendChild(jeepEl);
     await customElements.whenDefined('jeep-sqlite');
-    await jeepEl.componentOnReady();
 
-    // connectedCallback fires openStore() as a fire-and-forget promise;
-    // componentOnReady() resolves before it finishes, so we must poll.
-    for (let i = 0; i < 50; i++) {
-      if (await jeepEl.isStoreOpen()) break;
-      await new Promise(r => setTimeout(r, 100));
-    }
+    // $onReadyPromise$ is resolved by Stencil in componentDidLoad (first render).
+    // By that point openStore() has completed and $instanceValues$ is fully set up.
+    const hostRef = (jeepEl as any).__stencil__getHostRef?.();
+    await (hostRef?.$onReadyPromise$ ?? Promise.resolve());
 
     const sqlite = new SQLiteConnection(CapacitorSQLite);
     await sqlite.initWebStore();
